@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HD video gallery with stunning UI">
+    <title>Video Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Encabezado -->
+    <header class="header">
+        <div class="logo">
+            <a href="#">X ZONE</a>
+        </div>
+        <div class="header-image">
+            <img src="xzonelogomujer.png" alt="Header Image">
+        </div>
+    </header>
+
+    <!-- Aviso para mayores de 18 años -->
+    <div id="ageWarning" class="age-warning">
+        <div class="age-warning-content">
+            <p>Este sitio contiene contenido para adultos y es solo para mayores de 18 años. Si continúas, confirmas que eres mayor de edad.</p>
+            <button id="closeWarningButton" class="close-warning-btn">✖</button>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <main class="main">
+        <!-- Contenedor para partículas -->
+        <div id="particles-js"></div>
+
+        <!-- Barra de búsqueda -->
+        <div class="search-container">
+            <form class="search-form" id="searchForm" action="/search-results.html" method="GET">
+                <input type="search" id="searchInput" name="query" placeholder="Search for videos..." class="search-input" required>
+                <button type="submit" class="search-btn">Search</button>
+            </form>
+        </div>
+
+        <!-- Encabezado "Most Viewed" -->
+        <div class="most-viewed">
+            <span class="most-viewed-text">MOST VIEWED 🔥</span>
+        </div>
+
+        <!-- Galería de videos -->
+        <div class="video-gallery" id="videoGallery"></div>
+    </main>
+
+    <div id="videoGallery" class="video-gallery"></div>
+    <button id="loadMoreButton" class="load-more-btn">Cargar más videos</button>
+    
+
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <div class="footer-menu">
+            <a href="#" style="color: #ffffff; text-decoration: none; margin: 0 10px;">Privacy Policy</a>
+            <span style="color: #ffffff;">-</span>
+            <a href="#" style="color: #ffffff; text-decoration: none; margin: 0 10px;">Content Removal</a>
+            <span style="color: #ffffff;">-</span>
+            <a href="#" style="color: #ffffff; text-decoration: none; margin: 0 10px;">Contact Us</a>
+        </div>
+        <div class="footer-love" style="margin-top: 10px; color: #b4007e; font-size: 14px;">
+            By Majestic
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="particles.min.js" defer></script>
+    <script src="/scripts.js" defer></script>
+</body>
+</html>

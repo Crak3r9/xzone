@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Contenedor para partículas -->
+    <div id="particles-js"></div>
+ <!-- Encabezado -->
+  <header class="header">
+    <div class="logo">
+        <a href="/">X ZONE</a>
+    </div>
+    <div class="header-image">
+        <img src="xzonelogomujer.png" alt="Header Image">
+    </div>
+ </header> 
+
+    <!-- Formulario de búsqueda -->
+    <div class="search-container">
+        <form class="search-form" id="searchForm">
+            <input type="search" id="searchInput" placeholder="Search for videos..." class="search-input" required>
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+    </div>
+
+    <div id="resultsContainer" class="results-container">
+        <div class="video-item">
+            <video class="video-thumbnail" muted preload="metadata">
+                <source src="/path/to/video1.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de videos.
+            </video>
+            <div class="video-title">Título del Video 1</div>
+        </div>
+        <div class="video-item">
+            <video class="video-thumbnail" muted preload="metadata">
+                <source src="/path/to/video2.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de videos.
+            </video>
+            <div class="video-title">Título del Video 2</div>
+        </div>
+    </div>
+    
+    <button id="loadMoreButton" class="load-more-btn">Cargar más videos</button>
+    
+    <!-- Pie de página -->
+    <footer class="footer">
+        <div class="footer-menu">
+            <a href="#" style="color: #ffffff; text-decoration: none; margin: 0 10px;">Privacy Policy</a>
+            <span style="color: #ffffff;">-</span>
+            <a href="#" style="color: #ffffff; text-decoration: none; margin: 0 10px;">Content Removal</a>
+            <span style="color: #ffffff;">-</span>
+            <a href="#" style="color: #ffffff; text-decoration: none; margin: 0 10px;">Contact Us</a>
+        </div>
+        <div class="footer-love" style="margin-top: 10px; color: #b4007e; font-size: 14px;">
+            By Majestic
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="particles.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>

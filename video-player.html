@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor de Video</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Contenedor para partículas -->
+    <div id="particles-js"></div>
+
+     <!-- Encabezado -->
+     <header class="header">
+        <div class="logo">
+            <a href="/">X ZONE</a>
+        </div>
+        <div class="header-image">
+            <img src="xzonelogomujer.png" alt="Header Image">
+        </div>
+    </header>
+
+    <!-- Sección de video -->
+    <main class="main">
+        <div class="video-section">
+            <video id="videoPlayer" controls autoplay>
+                <source src="path-to-video.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de videos.
+            </video>
+            <h2 class="video-title" id="videoTitle">Nombre del video</h2>
+            <div class="video-stats">
+                <span id="viewCount" class="view-count">Vistas: 105K</span>
+                <button class="like-button" id="likeButton">❤️ Me gusta (<span id="likeCount">308</span>)</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <div class="footer-menu">
+            <a href="#" class="footer-link">Privacy Policy</a>
+            <span>-</span>
+            <a href="#" class="footer-link">Content Removal</a>
+            <span>-</span>
+            <a href="#" class="footer-link">Contact Us</a>
+        </div>
+        <div class="footer-love">By Majestic</div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="particles.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const videoElement = document.getElementById('videoPlayer');
+            const videoTitle = document.getElementById('videoTitle');
+            const viewCount = document.getElementById('viewCount');
+            const likeButton = document.getElementById('likeButton');
+            const likeCount = document.getElementById('likeCount');
+            const backendUrl = '/videos'; // Base URL para solicitudes
+
+            // Obtener el nombre del video desde la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const videoName = urlParams.get('video');
+
+            if (!videoName) {
+                videoTitle.textContent = 'Error: No se especificó ningún video.';
+                return;
+            }
+
+            // Configurar video e información inicial
+            videoElement.src = `/videos/${videoName}`;
+            videoTitle.textContent = decodeURIComponent(videoName);
+
+            // Incrementar vistas
+            await incrementViews(videoName);
+
+            // Configurar botón de "like"
+            likeButton.addEventListener('click', async () => {
+                await handleLike(videoName);
+            });
+
+            // Cargar likes iniciales
+            await loadLikes(videoName);
+
+            // Inicializar particles.js
+            initializeParticles();
+        });
+
+        // Función para incrementar vistas
+        async function incrementViews(videoName) {
+            try {
+                const response = await fetch('/videos/increment-view', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ video: videoName }),
+                });
+                const data = await response.json();
+                document.getElementById('viewCount').textContent = `Vistas: ${data.views}`;
+            } catch (error) {
+                console.error('Error incrementando vistas:', error);
+                document.getElementById('viewCount').textContent = 'Error al cargar vistas.';
+            }
+        }
+
+        // Función para manejar "likes"
+        async function handleLike(videoName) {
+            try {
+                const response = await fetch('/videos/like', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ video: videoName }),
+                });
+                const data = await response.json();
+                document.getElementById('likeCount').textContent = data.likes;
+            } catch (error) {
+                console.error('Error al dar like:', error);
+                alert('Hubo un problema al dar like.');
+            }
+        }
+
+        // Función para cargar likes iniciales
+        async function loadLikes(videoName) {
+            try {
+                const response = await fetch(`/videos/likes?video=${encodeURIComponent(videoName)}`);
+                const data = await response.json();
+                document.getElementById('likeCount').textContent = data.likes;
+            } catch (error) {
+                console.error('Error al cargar likes:', error);
+                document.getElementById('likeCount').textContent = '0';
+            }
+        }
+
+        // Función para inicializar particles.js
+        function initializeParticles() {
+            particlesJS("particles-js", {
+                particles: {
+                    number: { value: 100, density: { enable: true, value_area: 800 } },
+                    color: { value: "#ff0000" },
+                    shape: { type: "circle", stroke: { width: 0, color: "#000000" } },
+                    opacity: { value: 0.5 },
+                    size: { value: 3, random: true },
+                    line_linked: { enable: true, distance: 150, color: "#ff0000", opacity: 0.4, width: 1 },
+                    move: { enable: true, speed: 2 },
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" } },
+                },
+                retina_detect: true,
+            });
+        }
+    </script>
+</body>
+</html>

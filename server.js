@@ -126,6 +126,23 @@ app.get('/videos/likes', (req, res) => {
     res.status(200).json({ likes: videoLikes[video] || 0 });
 });
 
+// Buscar videos
+app.post('/search', (req, res) => {
+    const { query } = req.body;
+    if (!query) return res.status(400).json({ error: 'No se proporcionó una consulta de búsqueda.' });
+
+    fs.readdir(uploadDir, (err, files) => {
+        if (err) {
+            console.error('Error al buscar videos:', err);
+            return res.status(500).json({ error: 'Error al buscar videos.' });
+        }
+        const results = files.filter(file =>
+            file.toLowerCase().includes(query.toLowerCase()) && /\.(mp4|mkv|avi|mov)$/.test(file)
+        );
+        res.status(200).json({ results });
+    });
+});
+
 // Ruta para obtener una cantidad limitada de videos
 app.get('/videos/limited', (req, res) => {
     const limit = parseInt(req.query.limit) || 10; // Por defecto, devuelve 10 videos
@@ -140,7 +157,6 @@ app.get('/videos/limited', (req, res) => {
         res.status(200).json(videoFiles);
     });
 });
-
 
 // Ruta para obtener videos con paginación
 app.get('/videos/paginated', (req, res) => {
@@ -159,23 +175,6 @@ app.get('/videos/paginated', (req, res) => {
     });
 });
 
-
-// Buscar videos
-app.post('/search', (req, res) => {
-    const { query } = req.body;
-    if (!query) return res.status(400).json({ error: 'No se proporcionó una consulta de búsqueda.' });
-
-    fs.readdir(uploadDir, (err, files) => {
-        if (err) {
-            console.error('Error al buscar videos:', err);
-            return res.status(500).json({ error: 'Error al buscar videos.' });
-        }
-        const results = files.filter(file =>
-            file.toLowerCase().includes(query.toLowerCase()) && /\.(mp4|mkv|avi|mov)$/.test(file)
-        );
-        res.status(200).json({ results });
-    });
-});
 
 // Subir video
 app.post('/upload', upload.single('video'), (req, res) => {
@@ -202,5 +201,3 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
-
-

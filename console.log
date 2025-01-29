@@ -1,0 +1,42 @@
+uploadForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const video = document.getElementById('video').files[0];
+    const videoName = document.getElementById('videoName').value;
+
+    console.log('Archivo seleccionado:', video);
+    console.log('Nombre del video:', videoName);
+
+    if (!video || !videoName) {
+        uploadResponse.innerHTML = `<p style="color: red;">Debes seleccionar un video y asignarle un nombre.</p>`;
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('video', video);
+    formData.append('videoName', videoName);
+
+    try {
+        console.log('Enviando solicitud al servidor...');
+        const response = await fetch('http://localhost:3000/upload', {
+            method: 'POST',
+            body: formData,
+        });
+
+        console.log('Respuesta recibida:', response);
+
+        const data = await response.json();
+        if (response.ok) {
+            console.log('Respuesta del servidor:', data);
+            uploadResponse.innerHTML = `<p style="color: green;">${data.message}</p><p>Ruta: ${data.videoPath}</p>`;
+        } else {
+            console.error('Error del servidor:', data.error);
+            uploadResponse.innerHTML = `<p style="color: red;">Error: ${data.error}</p>`;
+        }
+    } catch (err) {
+        console.error('Error de conexión con el servidor:', err);
+        uploadResponse.innerHTML = `<p style="color: red;">Error de conexión con el servidor: ${err.message}</p>`;
+    }
+    console.log(document.getElementById('searchForm'));
+
+});

@@ -1,0 +1,379 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #000000;
+    background: #000000;
+    overflow-x: scroll;
+    min-height: 100vh;
+}
+
+/* Header */
+.header {
+    position: static; /* Fijo en la parte superior */
+    top: 0;
+    width: 100%;
+    background: #700000ea;
+    padding: 15px 20px;
+    z-index: 2; /* Asegura que esté encima de las miniaturas */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra */
+    display: flex; /* Flexbox para alinear elementos */
+    justify-content: space-between; /* Espacio entre logo e imagen */
+    align-items: center; /* Centra verticalmente los elementos */
+}
+
+.header-image img {
+    height: 100px; /* Ajusta la altura de la imagen */
+    object-fit: contain; /* Mantiene la proporción de la imagen */
+}
+
+.header .logo a {
+    color: #ffffff;
+    font-size: 70px; /* Incrementado por 3 dígitos */
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.header .logo a:first-letter {
+    color: red;
+}
+
+
+/* Main */
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+}
+
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Search Container */
+.search-container {
+    position: absolute;
+    top: 150px; /* Ajusta la posición según sea necesario */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 1;
+    display: flex; /* Permite flexibilidad en alineación */
+    justify-content: center; /* Centra los elementos en el eje horizontal */
+    align-items: center; /* Centra los elementos en el eje vertical */
+}
+
+.search-form {
+    display: flex; /* Alineación horizontal */
+    justify-content: center; /* Centra el formulario */
+    align-items: stretch; /* Garantiza que ambos elementos tengan la misma altura */
+    gap: 5px; /* Espaciado entre el input y el botón */
+}
+
+.search-input {
+    width: 500px; /* Ancho del campo de búsqueda */
+    height: 45px; /* Altura uniforme */
+    padding: 0 15px; /* Espaciado interno */
+    border: 1px solid #630000;
+    border-radius: 15px 0 0 15px; /* Bordes redondeados izquierdos */
+    outline: none;
+    background: #58010159;
+    color: #fff;
+    font-size: 16px;
+}
+
+.search-btn {
+    height: 45px; /* Altura coincidente */
+    padding: 0 20px; /* Ajuste para espaciado interno */
+    background: #57000056;
+    border: 1px solid #630000;
+    border-radius: 0 15px 15px 0; /* Bordes redondeados derechos */
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center; /* Centra el texto dentro del botón */
+    justify-content: center; /* Centra el texto horizontalmente */
+}
+
+.search-btn:hover {
+    background: #300000;
+}
+
+/* Galería de videos */
+.video-gallery {
+    display: flex;
+    flex-wrap: wrap; /* Permitir múltiples filas */
+    justify-content: center; /* Centrar miniaturas horizontalmente */
+    gap: 20px; /* Espaciado entre miniaturas */
+    margin: 20px auto 50px; /* Espaciado superior para no tapar el header */
+    padding: 0 20px;
+}
+
+/* Contenedor de Resultados */
+.results-container {
+    display: flex; /* Cambiar a flexbox */
+    flex-wrap: wrap; /* Permitir que los elementos pasen a una nueva fila si es necesario */
+    justify-content: center; /* Centrar los elementos horizontalmente */
+    gap: 10px; /* Espaciado entre los elementos */
+    margin-top: 100px;
+    padding: 20px; /* Padding interno */
+   
+}
+
+/* Estilo de los ítems individuales */
+.video-item {
+    background: #00000079;
+    border: 1px solid #630000;
+    border-radius: 10px;
+    width: 300px; /* Ancho fijo de cada ítem */
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+}
+
+.video-item:hover {
+    transform: scale(1.05); /* Efecto de zoom */
+}
+
+.video-thumbnail {
+    width: 100%; /* Ajustar al ancho del ítem */
+    height: 200px; /* Altura fija */
+    object-fit: cover; /* Mantener proporciones */
+}
+
+.video-title {
+    padding: 10px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    background: #2b0000;
+}
+
+
+.result-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #444;
+}
+
+.result-item:last-child {
+    border-bottom: none;
+}
+
+.result-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.result-description {
+    font-size: 14px;
+    color: #bbb;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: #070707;
+}
+
+.footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.footer-love {
+    margin-top: 10px;
+    color: rgb(136, 27, 100);
+}
+
+#videoPlayer {
+    width: 80%; /* Video ocupa el 80% del ancho de la página */
+    width: 1200px; /* Ancho máximo del video */
+    height: 700px; /* Altura fija del video */
+    border-radius: 10px; /* Bordes redondeados */
+    margin: 10px auto; /* Espaciado entre el video y otros elementos */
+    display: block; /* Centrar el video */
+    object-fit: cover; /* Asegura que el video se ajuste correctamente */
+}
+
+.video-title {
+    font-size: 20px;
+    margin: -10px 0;
+    color: #fff;
+    background-color: transparent; /* Fondo igual que el de la página */
+    text-align: left;
+}
+
+/* Contenedor del encabezado "Most Viewed" */
+.most-viewed {
+    display: flex;
+    align-items: center;
+    justify-content: left; /* Alineado a la izquierda */
+    position: relative; /* Posicionamiento relativo */
+    margin-top: 200px; /* Separación con respecto a la barra de búsqueda */
+    margin-left: -1300px; /* Separación del lado izquierdo */
+    color: #ffffff; /* Texto blanco */
+    font-size: 30px; /* Tamaño del texto */
+    font-weight: bold; /* Texto en negrita */
+    text-align: left;
+    gap: 8px; /* Espaciado entre el ícono y el texto */
+}
+
+/* Estilo del texto "Most Viewed" */
+.most-viewed-text {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Ícono del fuego (emoji o imagen personalizada) */
+.most-viewed-text::before {
+    content: "🔥"; /* Emoji de fuego */
+    font-size: 24px; /* Tamaño del ícono */
+    margin-right: 5px; /* Espaciado con respecto al texto */
+}
+
+
+
+/* Detalles del video */
+.video-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%; /* Ancho igual al del video */
+    max-width: 1200px; /* Igual que el ancho máximo del video */
+    margin: 10px auto; /* Espaciado con respecto al video */
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+    color: #ffffff; /* Texto blanco */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Sombra */
+}
+
+.video-stats {
+    display: flex;
+    justify-content: space-between; /* Mantiene elementos separados */
+    align-items: center; /* Centra verticalmente los elementos */
+    width: 80%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+.view-count {
+    margin-left: auto; /* Empuja el contador de vistas hacia la derecha */
+    font-size: 20px;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.like-button {
+    font-size: 20px;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Espacio entre el icono y el texto */
+}
+
+.like-button:hover {
+    color: #ff0000; /* Cambiar color al pasar el mouse */
+}
+
+
+
+
+/* Estilo del aviso de mayores de 18 años */
+.age-warning {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Asegura que esté encima de todo */
+}
+
+.age-warning-content {
+    background-color: #1f1f1fb6; /* Fondo del cuadro */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    color: #fff;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+}
+
+.age-warning-content p {
+    font-size: 18px;
+    margin: 0 0 20px;
+}
+
+.close-warning-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.close-warning-btn:hover {
+    background-color: #cc0000;
+}
+
+.load-more-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #700000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.load-more-btn:hover {
+    background-color: #a00000;
+}
+
